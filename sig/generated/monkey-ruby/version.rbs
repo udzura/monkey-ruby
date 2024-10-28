@@ -1,0 +1,5 @@
+# Generated from lib/monkey-ruby/version.rb with RBS::Inline
+
+module MonkeyRuby
+  VERSION: String
+end
