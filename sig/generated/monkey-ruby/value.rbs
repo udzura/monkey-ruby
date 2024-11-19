@@ -6,14 +6,19 @@ module MRuby
     attr_accessor tt: Symbol
 
     attr_accessor v: Integer | RSym | Float | RClass | RInstance | RProc | Array[RObject] | Hash[String, RObject] | String | Range[Integer]
+
+    # @rbs NIL: RObject
+    NIL: untyped
   end
 
   class RClass
     attr_accessor sym_id: RSym
 
-    attr_accessor super: RClass | nil
+    attr_accessor super: RClass?
 
     attr_accessor procs: Array[RProc]
+
+    OBJECT: untyped
   end
 
   class RInstance
@@ -40,5 +45,8 @@ module MRuby
 
   class RSym
     attr_accessor sym: Symbol
+
+    # @rbs sym: Symbol
+    def initialize: (Symbol sym) -> untyped
   end
 end

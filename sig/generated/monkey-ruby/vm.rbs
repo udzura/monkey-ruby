@@ -6,7 +6,7 @@ module MRuby
 
     attr_accessor vm_id: Integer
 
-    attr_accessor code: Array[Op]
+    attr_accessor code: Array[Op]?
 
     attr_accessor pc_irep: IREP
 
@@ -16,13 +16,16 @@ module MRuby
 
     attr_accessor current_regs: Array[RObject]
 
-    attr_accessor current_callinfo: CALLINFO
+    attr_accessor current_callinfo: CALLINFO?
 
     attr_accessor target_class: RClass
 
-    attr_accessor error_code: Integer | Symbol?
+    attr_accessor error_code: (Integer | Symbol)?
 
-    attr_accessor interrupt: bool
+    attr_accessor to_interrupt: bool
+
+    # @rbs irep: IREP
+    def self.begin_from_irep: (IREP irep) -> untyped
   end
 
   class IREP

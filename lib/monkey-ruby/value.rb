@@ -4,12 +4,20 @@ module MRuby
     attr_accessor :tt #: Symbol
     attr_accessor :v #: Integer|RSym|Float|RClass|RInstance|RProc|Array[RObject]|Hash[String, RObject]|String|Range[Integer] -- ...?
     # TODO: RObjectがRObjectへのハンドルを持ってるのは？
+   
+    # @rbs NIL: RObject
+    NIL = self.new.tap {|v| v.tt = :nil }
   end
 
   class RClass
     attr_accessor :sym_id #: RSym
-    attr_accessor :super #: RClass|nil
+    attr_accessor :super #: RClass?
     attr_accessor :procs #: Array[RProc]
+
+    OBJECT = self.new.tap do |klass|
+      klass.sym_id = RSym.new(:Object)
+      klass.procs = []
+    end
   end
 
   class RInstance
@@ -29,5 +37,10 @@ module MRuby
 
   class RSym
     attr_accessor :sym #: Symbol
+
+    # @rbs sym: Symbol
+    def initialize(sym)
+      self.sym = sym
+    end
   end
 end
