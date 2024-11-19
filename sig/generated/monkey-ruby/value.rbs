@@ -1,0 +1,44 @@
+# Generated from lib/monkey-ruby/value.rb with RBS::Inline
+
+# rbs_inline: enabled
+module MRuby
+  class RObject
+    attr_accessor tt: Symbol
+
+    attr_accessor v: Integer | RSym | Float | RClass | RInstance | RProc | Array[RObject] | Hash[String, RObject] | String | Range[Integer]
+  end
+
+  class RClass
+    attr_accessor sym_id: RSym
+
+    attr_accessor super: RClass | nil
+
+    attr_accessor procs: Array[RProc]
+  end
+
+  class RInstance
+    attr_accessor cls: RClass
+
+    attr_accessor ivar: Hash[RSym, RObject]
+
+    attr_accessor data: Object | nil
+
+    attr_accessor ref_count: Integer
+  end
+
+  class RProc
+    attr_accessor is_rb_func: Integer
+
+    attr_accessor sym_id: RSym
+
+    attr_accessor next: RProc
+
+    attr_accessor irep: IREP
+
+    attr_accessor func: Proc
+  end
+
+  class RSym
+    attr_accessor sym: Symbol
+  end
+end

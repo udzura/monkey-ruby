@@ -1,0 +1,14 @@
+# Generated from lib/monkey-ruby/op.rb with RBS::Inline
+
+# rbs_inline: enabled
+module MRuby
+  class Op
+    attr_accessor code: Integer | Symbol
+
+    attr_accessor operand: Array[Integer]
+
+    attr_accessor pos: Integer
+
+    attr_accessor len: Integer
+  end
+end

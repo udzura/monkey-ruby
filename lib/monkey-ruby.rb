@@ -1,4 +1,5 @@
-module MonkeyRuby
+# rbs_inline: enabled
+module MRuby
 end
 
-require "monkey-ruby/version
+require "monkey-ruby/version"

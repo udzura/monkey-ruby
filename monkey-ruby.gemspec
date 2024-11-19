@@ -4,7 +4,7 @@ require_relative "lib/monkey-ruby/version"
 
 Gem::Specification.new do |spec|
   spec.name = "monkey-ruby"
-  spec.version = MonkeyRuby::VERSION
+  spec.version = MRuby::VERSION
   spec.authors = ["Uchio Kondo"]
   spec.email = ["udzura@udzura.jp"]
 

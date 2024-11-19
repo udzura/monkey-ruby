@@ -1,0 +1,5 @@
+# Generated from lib/monkey-ruby.rb with RBS::Inline
+
+# rbs_inline: enabled
+module MRuby
+end
