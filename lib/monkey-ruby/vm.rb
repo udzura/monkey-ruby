@@ -2,9 +2,12 @@
 
 require "monkey-ruby/value"
 require "monkey-ruby/op"
+require "monkey-ruby/op_table"
 
 module MRuby
   class VM
+    include OpTable
+
     attr_accessor :irep #: Array[IREP]
     attr_accessor :vm_id #: Integer
     attr_accessor :code #: Array[Op]?
@@ -18,7 +21,8 @@ module MRuby
     attr_accessor :to_interrupt #: bool -- originally flag_preemption
 
     # @rbs irep: IREP
-    def self.begin_from_irep(irep)
+    # @rbs return: VM
+    def self.new_from_irep(irep)
       vm = new
       vm.irep = [irep]
       vm.vm_id = $$
@@ -30,8 +34,36 @@ module MRuby
       vm.target_class = RClass::OBJECT
       vm.error_code = 0
       vm.to_interrupt = false
+      vm
     end
+
+    # TODO: exception?
+    # @rbs return: void
+    def run
+      loop {
+        op = pc_irep.code[pc]
+        self.pc += 1
+        code = op.code
+        case code
+        when :END
+          self.to_interrupt = true
+        when :NOP
+          op_nop(self, code, regs)
+        else
+          raise NotImplementedError, "unsupported op #{code}"
+        end
+
+        if to_interrupt?
+          break
+        end
+      }
+
+      self.to_interrupt = false
+    end
+
+    alias to_interrupt? to_interrupt
   end
+
   class IREP
     attr_accessor :nlocals #: Integer
     attr_accessor :nregs #: Integer

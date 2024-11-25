@@ -1,5 +1,14 @@
 # rbs_inline: enabled
 module MRuby
+  class RSym
+    attr_accessor :sym #: Symbol
+
+    # @rbs sym: Symbol
+    def initialize(sym)
+      self.sym = sym
+    end
+  end
+
   class RObject
     attr_accessor :tt #: Symbol
     attr_accessor :v #: Integer|RSym|Float|RClass|RInstance|RProc|Array[RObject]|Hash[String, RObject]|String|Range[Integer] -- ...?
@@ -33,14 +42,5 @@ module MRuby
     attr_accessor :next #: RProc
     attr_accessor :irep #: IREP
     attr_accessor :func #: Proc 
-  end
-
-  class RSym
-    attr_accessor :sym #: Symbol
-
-    # @rbs sym: Symbol
-    def initialize(sym)
-      self.sym = sym
-    end
   end
 end

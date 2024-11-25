@@ -2,6 +2,8 @@
 
 module MRuby
   class VM
+    include OpTable
+
     attr_accessor irep: Array[IREP]
 
     attr_accessor vm_id: Integer
@@ -25,7 +27,14 @@ module MRuby
     attr_accessor to_interrupt: bool
 
     # @rbs irep: IREP
-    def self.begin_from_irep: (IREP irep) -> untyped
+    # @rbs return: VM
+    def self.new_from_irep: (IREP irep) -> VM
+
+    # TODO: exception?
+    # @rbs return: void
+    def run: () -> void
+
+    alias to_interrupt? to_interrupt
   end
 
   class IREP

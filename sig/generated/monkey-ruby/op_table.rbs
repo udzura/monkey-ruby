@@ -1,0 +1,10 @@
+# Generated from lib/monkey-ruby/op_table.rb with RBS::Inline
+
+module MRuby
+  module OpTable
+    # @rbs vm: VM
+    # @rbs code: Symbol
+    # @rbs regs: Array[RObject]
+    def op_nop: (VM vm, Symbol code, Array[RObject] regs) -> untyped
+  end
+end

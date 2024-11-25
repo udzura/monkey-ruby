@@ -3,12 +3,18 @@
 # rbs_inline: enabled
 module MRuby
   class Op
-    attr_accessor code: Integer | Symbol
+    attr_accessor code: Symbol
 
     attr_accessor operand: Array[Integer]
 
     attr_accessor pos: Integer
 
     attr_accessor len: Integer
+
+    # @rbs code: Symbol
+    # @rbs operand: Array[Integer]
+    # @rbs pos: Integer
+    # @rbs len: Integer
+    def initialize: (Symbol code, Array[Integer] operand, ?Integer pos, ?Integer len) -> untyped
   end
 end
